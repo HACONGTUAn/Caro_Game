@@ -1,0 +1,13 @@
+struct Room{
+  char Room_id[20];
+  int client1;
+  int client2;
+  char Pass[50];
+  int count_cline;
+};
+void setUpRoom(struct Room room[]){
+  int i;
+  for( i = 0; i < 100 ; ++i){
+    strcpy(room[i].Room_id,"0");
+  }
+}

@@ -1,0 +1,2 @@
+#define LOGIN "login-success"
+#define LOGIN_FALSE "wrong-user\n"

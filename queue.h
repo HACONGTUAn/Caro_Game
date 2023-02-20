@@ -1,0 +1,61 @@
+
+// Define a struct to hold the queue elements
+typedef struct {
+    void* data;
+} queue_element;
+
+// Define a struct to hold the queue
+typedef struct {
+    queue_element* elements;
+    int front;
+    int rear;
+    int length;
+} queue;
+
+// Function to create a new queue
+queue* create_queue(int size) {
+    queue* q = (queue*) malloc(sizeof(queue));
+    q->elements = (queue_element*) malloc(sizeof(queue_element) * size);
+    q->front = 0;
+    q->rear = -1;
+    q->length = 0;
+    return q;
+}
+
+// Function to add an element to the queue
+void enqueue(queue* q, void* data) {
+    q->rear++;
+    q->elements[q->rear].data = data;
+    q->length++;
+}
+
+// Function to remove an element from the queue
+void* dequeue(queue* q) {
+    if (q->length == 0) {
+        return NULL;
+    }
+    void* data = q->elements[q->front].data;
+    q->front++;
+    q->length--;
+    return data;
+}
+
+// Function to check if the queue is empty
+int is_empty(queue* q) {
+    return q->length == 0;
+}
+
+// Function to get the length of the queue
+int length_q(queue* q) {
+    return q->length;
+}
+void print_queue(queue * q, void (*print_func)(void*)){
+  while(!is_empty(q)){
+    void * data = dequeue(q);
+    print_func(data);
+  }
+}
+void printf_int(void *data){
+  char *p = (char *)data;
+  printf("%s-",p);
+}
